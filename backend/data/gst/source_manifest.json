@@ -1,0 +1,6 @@
+{
+  "status": "not_imported",
+  "notice": "No official tax snapshot has been imported. Demo rates are illustrative only.",
+  "official_hsn_download": "https://services.gst.gov.in/services/searchhsnsac",
+  "official_rate_portal": "https://taxinformation.cbic.gov.in/"
+}

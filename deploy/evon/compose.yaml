@@ -1,0 +1,40 @@
+services:
+  evon:
+    image: vllm/vllm-openai:v0.33.0
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+    environment:
+      HF_HOME: /root/.cache/huggingface
+    command:
+      - --model
+      - gnani/gnani-evon-v3.3-30B-A3B
+      - --revision
+      - fb9ddb6b58f2d235684388a9260671fca5ebccaf
+      - --served-model-name
+      - vyaparsetu-evon
+      - --dtype
+      - bfloat16
+      - --max-model-len
+      - "8192"
+      - --max-num-seqs
+      - "1"
+      - --gpu-memory-utilization
+      - "0.90"
+      - --enforce-eager
+      - --trust-remote-code
+      - --enable-auto-tool-choice
+      - --tool-call-parser
+      - qwen3_coder
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --api-key
+      - ${EVON_API_KEY:?Set EVON_API_KEY before starting}
+    gpus: all
+    restart: "no"
+
+volumes:
+  hf-cache:
